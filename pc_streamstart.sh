@@ -3,10 +3,6 @@ myip=$(ifconfig eth0 | grep "inet " |cut -f2 -d: |tr " " ":"|cut -f1 -d:)
 port=5000
 piip=192.168.1.195
 
-if  [[ $# == 1 ]]
-        then
-        port=$1
-fi
 
 if  [[ $# == 1 ]]
         then
@@ -17,7 +13,7 @@ elif [[ $# == 2 ]]
         port=$2
 fi
 
-ssh pi@$piip "cd /home/pi; ./pi_startcam.sh $myip $port;killall gst-launch-1.0; exit;" &
+ssh pi@$piip "cd /home/pi/pistream; ./pi_startcam.sh $myip $port;killall gst-launch-1.0; exit;" &
 
 
 gst-launch-1.0 udpsrc port=$port \
