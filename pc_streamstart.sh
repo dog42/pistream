@@ -2,7 +2,8 @@
 myip=$(ifconfig eth0 | grep "inet " |cut -f2 -d: |tr " " ":"|cut -f1 -d:)
 port=5000
 piip=192.168.1.195
-
+video='! tee name=t t. ! queue ! avimux ! filesink location=./test2.avi t. ! queue ' #optional videorecord
+video=''
 
 if  [[ $# == 1 ]]
         then
@@ -20,7 +21,7 @@ gst-launch-1.0 udpsrc port=$port \
     ! gdpdepay \
     ! rtph264depay \
     ! avdec_h264 \
-    ! videoconvert \
+    ! videoconvert $video \
     ! autovideosink sync=false
 
 
