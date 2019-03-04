@@ -1,0 +1,24 @@
+bei Fehler
+
+mmal: mmal_vc_component_enable: failed to enable component: ENOSPC
+FEHLER: Von Element /GstPipeline:pipeline0/GstRpiCamSrc:rpicamsrc0: Interner Fehler im Datenfluss.
+Zusätzliche Fehlerdiagnoseinformation:
+gstbasesrc.c(2933): gst_base_src_loop (): /GstPipeline:pipeline0/GstRpiCamSrc:rpicamsrc0:
+
+
+läuft vermutlich noch motion !!
+To enable motion to run as a daemon on startup do the following:
+
+Edit /etc/default/motion
+
+and change start_motion_daemon=no to start_motion_daemon=yes
+
+Next enable motion by entering the following at the command line:
+
+sudo systemctl enable motion
+Finally reboot.
+
+You can confirm motion is running by checking the output from the following command:
+
+sudo service motion status
+

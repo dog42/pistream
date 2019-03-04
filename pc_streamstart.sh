@@ -14,10 +14,10 @@ elif [[ $# == 2 ]]
         piip=$1
         port=$2
 fi
-
+echo "### START PI"
 ssh pi@$piip "cd /home/pi/pistream; ./pi_startcam.sh $myip $port;killall gst-launch-1.0; exit;" &
 
-
+echo "### START PC"
 gst-launch-1.0 udpsrc port=$port \
     ! gdpdepay \
     ! rtph264depay \
@@ -25,5 +25,5 @@ gst-launch-1.0 udpsrc port=$port \
     ! videoconvert $video \
     ! autovideosink sync=false
 
-
+echo "### STOP PI"
 ssh pi@$piip "killall gst-launch-1.0"
