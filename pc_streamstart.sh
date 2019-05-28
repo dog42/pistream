@@ -2,7 +2,7 @@
 #myip=$(ifconfig eth0 | grep "inet " |cut -f2 -d: |tr " " ":"|cut -f1 -d:)
 myip=$(ip addr show  eth0 | grep -E 'inet.[0-9]' | grep -v '127.0.0.1' | awk '{ print $2}' |  cut -f1 -d"/" ) #is besser
 port=5000
-piip=192.168.1.195
+piip=192.168.77.244
 video='! tee name=t t. ! queue ! avimux ! filesink location=./test2.avi t. ! queue ' #optional videorecord
 video=''
 
@@ -15,6 +15,7 @@ elif [[ $# == 2 ]]
         port=$2
 fi
 echo "### START PI"
+echo $myip
 ssh pi@$piip "cd /home/pi/pistream; ./pi_startcam.sh $myip $port;killall gst-launch-1.0; exit;" &
 
 echo "### START PC"

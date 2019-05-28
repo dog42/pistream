@@ -22,3 +22,15 @@ You can confirm motion is running by checking the output from the following comm
 
 sudo service motion status
 
+
+
+bei Fehler 
+
+mmal: mmal_vc_component_create: failed to create component 'vc.ril.camera' (1:ENOMEM)
+mmal: mmal_component_create_core: could not create component 'vc.ril.camera' (1)
+mmal: Failed to create camera component
+mmal: main: Failed to create camera component
+mmal: Camera is not enabled in this build. Try running "sudo raspi-config" and ensure that "camera" has been enabled
+
+
+keine Verbindung zur Camara oder nicht aktiviert
